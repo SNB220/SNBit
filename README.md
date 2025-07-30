@@ -232,4 +232,4 @@ If you encounter any issues or have questions:
 
 ---
 
-**Made with ❤️ by [nabie](https://github.com/yourusername)**
+**Made with ❤️ by [nabiel](https://github.com/yourusername)**
