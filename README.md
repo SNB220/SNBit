@@ -232,4 +232,4 @@ If you encounter any issues or have questions:
 
 ---
 
-**Made with ❤️ by [nabiel](https://github.com/SNB220)**
+**Made ❤️ by [nabiel](https://github.com/SNB220)**
