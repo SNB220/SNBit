@@ -499,7 +499,7 @@ class SNBitRequestHandler(BaseHTTPRequestHandler):
                         
                         <div class="footer">
                             <p>Powered by <a href="https://github.com/yourusername/snbit-uploader" target="_blank">SNBit Uploader</a> 🚀</p>
-                            <p>Made with ❤️ by nabie</p>
+                            <p>Made with ❤️ by SNB</p>
                         </div>
                     </div>
 
