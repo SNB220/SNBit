@@ -1,0 +1,2 @@
+# This file keeps the uploads directory in git
+# The directory is needed for the application but should remain empty in the repository

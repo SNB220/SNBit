@@ -1,0 +1,116 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9, "3.10", "3.11"]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov flake8
+    
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings
+        flake8 src/ --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
+    
+    - name: Test application startup
+      run: |
+        # Test that the application can import and start without errors
+        python -c "
+        import sys
+        sys.path.append('src')
+        from snbit_uploader import SNBitRequestHandler, get_local_ip, format_file_size
+        print('✅ Application imports successfully')
+        print(f'🌐 Local IP: {get_local_ip()}')
+        print(f'📏 Format test: {format_file_size(1024)}')
+        "
+    
+    - name: Test configuration
+      run: |
+        # Test environment variable configuration
+        export SNBIT_PORT=9999
+        export SNBIT_MAX_FILE_SIZE=50000000
+        python -c "
+        import sys
+        sys.path.append('src')
+        import snbit_uploader
+        print(f'✅ Port configured: {snbit_uploader.PORT}')
+        print(f'✅ Max size configured: {snbit_uploader.MAX_FILE_SIZE}')
+        "
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety
+    
+    - name: Run security checks with bandit
+      run: |
+        bandit -r src/ -f json -o bandit-report.json || true
+        bandit -r src/
+    
+    - name: Check dependencies for known vulnerabilities
+      run: |
+        safety check -r requirements.txt
+
+  compatibility:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.9", "3.11"]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Test cross-platform compatibility
+      run: |
+        python -c "
+        import sys
+        sys.path.append('src')
+        from snbit_uploader import get_local_ip, format_file_size, is_allowed_file
+        print(f'✅ Platform: {sys.platform}')
+        print(f'🌐 Local IP: {get_local_ip()}')
+        print(f'📁 File check: {is_allowed_file(\"test.txt\")}')
+        print(f'📏 Size format: {format_file_size(1048576)}')
+        "
