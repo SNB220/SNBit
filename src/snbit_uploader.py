@@ -4,6 +4,7 @@ SNBit Uploader - A secure and modern file upload server
 Author: nabie
 Description: A Python-based HTTP file upload server with QR code generation,
              mobile-friendly UI, and comprehensive security features.
+Version: 1.1.0
 """
 
 import os
@@ -207,7 +208,12 @@ def get_local_ip():
         s.close()
         return ip
     except Exception:
-        return "127.0.0.1"
+        # Fallback for environments without internet access or Windows issues
+        try:
+            hostname = socket.gethostname()
+            return socket.gethostbyname(hostname)
+        except Exception:
+            return "127.0.0.1"
 
 def is_allowed_file(filename):
     """Check if the file extension is allowed"""
