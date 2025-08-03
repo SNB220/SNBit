@@ -19,7 +19,6 @@ import mimetypes
 import json
 import sys
 from pathlib import Path
-import threading
 
 # Configuration
 DEFAULT_UPLOAD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "uploads")

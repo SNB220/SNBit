@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9, "3.10", "3.11"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
 
     steps:
     - uses: actions/checkout@v3
@@ -40,10 +40,14 @@ jobs:
         python -c "
         import sys
         sys.path.append('src')
-        from snbit_uploader import SNBitRequestHandler, get_local_ip, format_file_size
-        print('✅ Application imports successfully')
-        print(f'🌐 Local IP: {get_local_ip()}')
-        print(f'📏 Format test: {format_file_size(1024)}')
+        try:
+            from snbit_uploader import SNBitRequestHandler, get_local_ip, format_file_size
+            print('✅ Application imports successfully')
+            print(f'🌐 Local IP: {get_local_ip()}')
+            print(f'📏 Format test: {format_file_size(1024)}')
+        except Exception as e:
+            print(f'❌ Import failed: {e}')
+            sys.exit(1)
         "
     
     - name: Test configuration
@@ -54,9 +58,13 @@ jobs:
         python -c "
         import sys
         sys.path.append('src')
-        import snbit_uploader
-        print(f'✅ Port configured: {snbit_uploader.PORT}')
-        print(f'✅ Max size configured: {snbit_uploader.MAX_FILE_SIZE}')
+        try:
+            import snbit_uploader
+            print(f'✅ Port configured: {snbit_uploader.PORT}')
+            print(f'✅ Max size configured: {snbit_uploader.MAX_FILE_SIZE}')
+        except Exception as e:
+            print(f'❌ Configuration test failed: {e}')
+            sys.exit(1)
         "
 
   security:
@@ -108,9 +116,13 @@ jobs:
         python -c "
         import sys
         sys.path.append('src')
-        from snbit_uploader import get_local_ip, format_file_size, is_allowed_file
-        print(f'✅ Platform: {sys.platform}')
-        print(f'🌐 Local IP: {get_local_ip()}')
-        print(f'📁 File check: {is_allowed_file(\"test.txt\")}')
-        print(f'📏 Size format: {format_file_size(1048576)}')
+        try:
+            from snbit_uploader import get_local_ip, format_file_size, is_allowed_file
+            print(f'✅ Platform: {sys.platform}')
+            print(f'🌐 Local IP: {get_local_ip()}')
+            print(f'📁 File check: {is_allowed_file(\"test.txt\")}')
+            print(f'📏 Size format: {format_file_size(1048576)}')
+        except Exception as e:
+            print(f'❌ Cross-platform test failed: {e}')
+            sys.exit(1)
         "
