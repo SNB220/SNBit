@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 SNBit Uploader - A secure and modern file upload server
 Author: nabie
 Description: A Python-based HTTP file upload server with QR code generation,
              mobile-friendly UI, and comprehensive security features.
-Version: 1.1.0
+Version: 1.1.1
 """
 
 import os
