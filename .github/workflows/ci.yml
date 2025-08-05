@@ -36,13 +36,14 @@ jobs:
     
     - name: Test application startup
       run: |
-        python -c "import sys; sys.path.append('src'); from snbit_uploader import SNBitRequestHandler, get_local_ip, format_file_size; print('✅ Application imports successfully'); print(f'🌐 Local IP: {get_local_ip()}'); print(f'📏 Format test: {format_file_size(1024)}')"
+        python test_ci.py
     
     - name: Test configuration
+      env:
+        SNBIT_PORT: 9999
+        SNBIT_MAX_FILE_SIZE: 50000000
       run: |
-        export SNBIT_PORT=9999
-        export SNBIT_MAX_FILE_SIZE=50000000
-        python -c "import sys; sys.path.append('src'); import snbit_uploader; print(f'✅ Port configured: {snbit_uploader.PORT}'); print(f'✅ Max size configured: {snbit_uploader.MAX_FILE_SIZE}')"
+        python test_ci.py
 
   security:
     runs-on: ubuntu-latest
@@ -90,4 +91,4 @@ jobs:
     
     - name: Test cross-platform compatibility
       run: |
-        python -c "import sys; sys.path.append('src'); from snbit_uploader import get_local_ip, format_file_size, is_allowed_file; print(f'✅ Platform: {sys.platform}'); print(f'🌐 Local IP: {get_local_ip()}'); print(f'📁 File check: {is_allowed_file(\"test.txt\")}'); print(f'📏 Size format: {format_file_size(1048576)}')"
+        python test_ci.py
