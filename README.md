@@ -135,7 +135,7 @@ The server displays an ASCII QR code in the terminal for easy mobile access:
 
 ```bash
 # Clone and setup
-git clone https://github.com/yourusername/snbit-uploader.git
+git clone https://github.com/SNB220/snbit-uploader.git
 cd snbit-uploader
 
 # Install dependencies
@@ -240,7 +240,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 If you encounter any issues or have questions:
 
-1. Check the [Issues](https://github.com/yourusername/snbit-uploader/issues) page
+1. Check the [Issues](https://github.com/SNB220/snbit-uploader/issues) page
 2. Create a new issue with detailed information
 3. Include logs and system information
 
@@ -252,4 +252,4 @@ If you encounter any issues or have questions:
 
 ---
 
-**Made with ❤️ by [nabie](https://github.com/yourusername)**
+**Made with ❤️ by [SNB](https://github.com/SNB220)**
