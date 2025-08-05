@@ -7,6 +7,23 @@ Tests basic functionality and imports for continuous integration
 
 import sys
 import os
+import io
+
+# Force UTF-8 encoding for stdout/stderr on Windows to handle Unicode characters
+if sys.platform.startswith('win'):
+    try:
+        # Reconfigure stdout and stderr to use UTF-8 encoding
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
+    except (AttributeError, OSError):
+        # Fallback for older Python versions or if reconfiguration fails
+        import codecs
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'replace')
+        sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'replace')
+
+# Alternative: Set environment variable if not already set
+if 'PYTHONIOENCODING' not in os.environ:
+    os.environ['PYTHONIOENCODING'] = 'utf-8'
 
 # Add src directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
@@ -59,6 +76,21 @@ def test_configuration():
         print(f"❌ Configuration test failed: {e}")
         return False
 
+def test_unicode_handling():
+    """Test that Unicode characters (emojis) can be printed without errors"""
+    try:
+        # Test various Unicode characters commonly used in the output
+        unicode_chars = "🚀📋✅❌🌐📏📁"
+        print(f"🧪 Unicode test: {unicode_chars}")
+        print("✅ Unicode characters handled successfully")
+        return True
+    except UnicodeEncodeError as e:
+        print(f"❌ Unicode encoding failed: {e}")
+        return False
+    except Exception as e:
+        print(f"❌ Unicode test failed: {e}")
+        return False
+
 def test_cross_platform_compatibility():
     """Test cross-platform compatibility"""
     try:
@@ -82,6 +114,7 @@ def main():
         ("Import Test", test_imports),
         ("Basic Functionality Test", test_basic_functionality),
         ("Configuration Test", test_configuration),
+        ("Unicode Handling Test", test_unicode_handling),
         ("Cross-Platform Compatibility Test", test_cross_platform_compatibility)
     ]
     

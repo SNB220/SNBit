@@ -35,6 +35,8 @@ jobs:
         flake8 src/ --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
     
     - name: Test application startup
+      env:
+        PYTHONIOENCODING: utf-8
       run: |
         python test_ci.py
     
@@ -42,6 +44,7 @@ jobs:
       env:
         SNBIT_PORT: 9999
         SNBIT_MAX_FILE_SIZE: 50000000
+        PYTHONIOENCODING: utf-8
       run: |
         python test_ci.py
 
@@ -90,5 +93,7 @@ jobs:
         pip install -r requirements.txt
     
     - name: Test cross-platform compatibility
+      env:
+        PYTHONIOENCODING: utf-8
       run: |
         python test_ci.py
