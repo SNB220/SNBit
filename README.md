@@ -50,7 +50,7 @@ By default, the following file types are allowed:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/snbit-uploader.git
+   git clone https://github.com/SNB220/snbit-uploader.git
    cd snbit-uploader
    ```
 
