@@ -1,5 +1,5 @@
 # Core dependencies for SNBit Uploader
-qrcode[pil]==7.3
+qrcode==7.3
 Pillow>=9.1.0
 
 # Development and testing dependencies (optional)
