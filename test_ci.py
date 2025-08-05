@@ -3,6 +3,11 @@
 """
 CI Test Script for SNBit Uploader
 Tests basic functionality and imports for continuous integration
+
+Unicode Handling:
+- Configures UTF-8 encoding for stdout/stderr on Windows to prevent UnicodeEncodeError
+- Sets PYTHONIOENCODING environment variable as fallback
+- Handles emoji and Unicode characters (🚀📋✅❌🌐📏📁) in console output
 """
 
 import sys
