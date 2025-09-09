@@ -498,7 +498,7 @@ class SNBitRequestHandler(BaseHTTPRequestHandler):
                         </div>
                         
                         <div class="footer">
-                            <p>Powered by <a href="https://github.com/SNB220/SNB" target="_blank">SNBit Uploader</a> </p>
+                            <p>Powered by <a href="https://github.com/SNB220/SNBit" target="_blank">SNB</a> </p>
                         </div>
                     </div>
 
