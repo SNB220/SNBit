@@ -6,16 +6,16 @@ A modern, secure, and user-friendly file upload server built with Python. Featur
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-cross--platform-lightgrey.svg)
 
-## ✨ Features
+## Features
 
-### 🔒 Security & Safety
+### Security & Safety
 - **File extension validation** - Only allows specified safe file types
 - **File size limits** - Configurable maximum file size (default: 100MB)
 - **Path traversal protection** - Prevents directory escape attacks
 - **Dedicated uploads folder** - Isolated file storage
 - **Automatic filename conflict resolution** - Prevents file overwrites
 
-### 🎨 Modern UI/UX
+### Modern UI/UX
 - **Professional dark theme** - Easy on the eyes with cyan accents
 - **Custom logo support** - Add your own branding with SVG logos
 - **Mobile-responsive design** - Works seamlessly on all devices
@@ -25,14 +25,14 @@ A modern, secure, and user-friendly file upload server built with Python. Featur
 - **QR code generation** - Easy mobile access (web + terminal)
 - **Terminal QR code** - ASCII QR code displayed in console for quick scanning
 
-### 🛠️ Technical Features
+###  Technical Features
 - **Multiple file uploads** - Select and upload multiple files at once
 - **Health check endpoint** - Monitor server status at `/health`
 - **Comprehensive logging** - Track all activities and errors
 - **Environment configuration** - Easily configurable via environment variables
 - **Cross-platform compatibility** - Works on Windows, macOS, and Linux
 
-## 📋 Supported File Types
+##  Supported File Types
 
 By default, the following file types are allowed:
 - **Documents**: `.txt`, `.pdf`, `.docx`
@@ -40,7 +40,7 @@ By default, the following file types are allowed:
 - **Media**: `.mp4`, `.mp3`
 - **Archives**: `.zip`
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Python 3.7 or higher
@@ -68,7 +68,7 @@ By default, the following file types are allowed:
    - Open your browser and go to `http://localhost:8080`
    - Or scan the QR code with your mobile device
 
-## ⚙️ Configuration
+##  Configuration
 
 Configure the server using environment variables:
 
@@ -114,22 +114,7 @@ snbit-uploader/
     └── copilot-instructions.md
 ```
 
-## 🎨 Customization
-
-### Custom Logo
-Replace the logo by adding your own SVG file:
-1. Place your logo at `assets/logo.svg`
-2. Ensure it's in SVG format for best quality
-3. Recommended size: 60x60px or scalable SVG
-4. The logo will automatically appear in the web interface and as favicon
-
-### Terminal QR Code
-The server displays an ASCII QR code in the terminal for easy mobile access:
-- Scan with any QR code reader
-- Automatically shows your network IP
-- Perfect for quick mobile connections
-
-## 🔧 Development
+## Development
 
 ### Running in Development Mode
 
@@ -153,7 +138,7 @@ python src/snbit_uploader.py
 4. Test thoroughly
 5. Submit a pull request
 
-## 📊 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -197,7 +182,7 @@ docker build -t snbit-uploader .
 docker run -p 8080:8080 snbit-uploader
 ```
 
-## 🛡️ Security Considerations
+## Security Considerations
 
 - **File Type Validation**: Only whitelisted extensions are allowed
 - **Size Limits**: Prevents DoS attacks via large files
@@ -205,7 +190,7 @@ docker run -p 8080:8080 snbit-uploader
 - **Input Validation**: All user inputs are validated and sanitized
 - **Error Handling**: Graceful error handling without information disclosure
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -228,15 +213,15 @@ docker run -p 8080:8080 snbit-uploader
    pip install qrcode[pil]
    ```
 
-## 📜 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Built with Python's built-in `http.server` module
 - QR code generation powered by [qrcode](https://pypi.org/project/qrcode/)
