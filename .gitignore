@@ -166,9 +166,15 @@ uploads/*
 .DS_Store
 Thumbs.db
 
+# Local editor/config and CI (not needed for upload)
+.vscode/
+.github/
+
+# Local scripts/tests not needed for distribution
+test_basic.py
+test_ci.py
+check_syntax.py
+snbit_uploader.log
+
 # Assets (keep the directory but ignore custom logos if desired)
 # assets/custom-logo.*
-
-# VS Code
-.vscode/settings.json
-.vscode/launch.json
